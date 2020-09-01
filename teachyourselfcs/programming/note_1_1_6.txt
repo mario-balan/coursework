@@ -18,8 +18,9 @@
 (define (sqrt x)
   (sqrt-iter 1.0 x))
 
-- there is and 'abs' which is not clearly defined. it should be:
+- there is an 'abs' and a 'square' which is not explicitly defined. they should be:
   
 (define (abs x) 
     ((if (> x 0) + -) x)))
 
+(define (square x) (* x x))
