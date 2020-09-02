@@ -23,9 +23,9 @@ Exercise 1.7:
 
 ...
 
-- the rate of change being |((x1 - x0) / x0)|, where x1 is the next guess and x0 is the previous guess.
+- as rate of change is defined by |((x1 - x0) / x0)|, where x1 is the next guess and x0 is the previous guess.
 
-- so we can:
+- we can:
     (a) look forward for the next guess ('improve guess') inside the 'good-enough?' procedure and compare it to 'guess' to decide if 'sqrt-iter' will evaluate it or not;
     OR
     (b) look backwards, creating a variable 'old-guess' in 'sqrt-iter'. this way we won't need to evaluate 'improve guess' when checking the tolerance.
@@ -33,6 +33,42 @@ Exercise 1.7:
 - going with (a) only minor changes are needed:
 
 (define (good-enough? guess x)
-  (< (abs (/ (- (improve guess) guess) guess)) 0.001))
+  (< (abs (/ (- (improve guess x) guess) guess)) 0.001))
 
 - which does work a lot better for smaller and larger numbers.
+
+...
+
+...
+
+and here is the...
+
+------------------------------------------
+----- COMPLETE CODE WITH ADDED TESTS -----
+------------------------------------------
+
+(define (sqrt-iter guess x)
+  (if (good-enough? guess x)
+      guess
+      (sqrt-iter (improve guess x)
+                 x)))
+
+(define (good-enough? guess x)
+  (< (abs (/ (- (improve guess x) guess) guess)) 0.001))
+
+(define (improve guess x)
+  (average guess (/ x guess)))
+  
+(define (average x y)
+  (/ (+ x y) 2))
+
+(define (square x) (* x x))
+  
+(define (abs x) 
+  ((if (> x 0) + -) x))
+  
+(define (sqrt x)
+  (sqrt-iter 1.0 x))
+
+(display (sqrt (* 0.01 0.01))) (newline) 
+(display (sqrt 1e13))
