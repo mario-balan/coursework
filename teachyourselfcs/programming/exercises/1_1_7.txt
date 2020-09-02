@@ -23,14 +23,14 @@ Exercise 1.7:
 
 ...
 
-- as rate of change is defined by |((x1 - x0) / x0)|, where x1 is the next guess and x0 is the previous guess.
+- as 'rate of change' is defined by |(x1 - x0) / x0|, where x1 is the next guess and x0 is the previous guess.
 
 - we can:
     (a) look forward for the next guess ('improve guess') inside the 'good-enough?' procedure and compare it to 'guess' to decide if 'sqrt-iter' will evaluate it or not;
     OR
-    (b) look backwards, creating a variable 'old-guess' in 'sqrt-iter'. this way we won't need to evaluate 'improve guess' when checking the tolerance.
+    (b) look backwards, creating a variable 'old-guess' in 'sqrt-iter'. this way we won't need to evaluate 'improve guess' when checking 'good-enough?'.
     
-- going with (a) only minor changes are needed:
+- going with (a) only minor changes to the original code are needed:
 
 (define (good-enough? guess x)
   (< (abs (/ (- (improve guess x) guess) guess)) 0.001))
@@ -49,9 +49,8 @@ and here is the...
 
 (define (sqrt-iter guess x)
   (if (good-enough? guess x)
-      guess
-      (sqrt-iter (improve guess x)
-                 x)))
+    guess
+      (sqrt-iter (improve guess x) x)))
 
 (define (good-enough? guess x)
   (< (abs (/ (- (improve guess x) guess) guess)) 0.001))
