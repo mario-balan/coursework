@@ -70,5 +70,6 @@ and here is the...
 (define (sqrt x)
   (sqrt-iter 1.0 x))
 
-(display (sqrt (* 0.01 0.01))) (newline) 
-(display (sqrt 1e13))
+;; Tests:
+(sqrt (* 0.01 0.01)) 
+(sqrt 1e13)
