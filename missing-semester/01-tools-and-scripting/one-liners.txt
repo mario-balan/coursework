@@ -1,0 +1,2 @@
+ls .. -laht --color=yes
+find . -name '*.html' | xargs -d '\n' zip all_html.zip
