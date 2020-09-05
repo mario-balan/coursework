@@ -12,8 +12,8 @@
 (define (good-enough? guess x)
     (= (improve guess x) guess))
 
-;this is the only procedure that needs changing
-;the 'average' procedure is discarded
+;this is the only procedure that was changed
+;the previous 'average' procedure was discarded
 (define (improve guess x)
     (/ (+ (/ x (square guess)) (* 2 guess)) 3))
   
@@ -22,7 +22,7 @@
 (define (cbrt x)
     (cbrt-iter 1.0 x))
 
-; for heliping with tests:
+; for helping with tests:
 (define (cube x)(* x x x))
 
 ;Tests:
