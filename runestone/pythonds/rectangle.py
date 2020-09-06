@@ -1,10 +1,8 @@
-import test
-
 # doing this as an exercise, even though I'm not sure if there are
 # good reasons for using getters and setters in Python
 
 class Point:
-    """Point class for representing and manipulating coordinates in a plane."""
+    """Point class for representing and manipulating coordinates on a plane."""
 
     def __init__(self, initX, initY):
         self.x = initX
@@ -49,6 +47,15 @@ class Rectangle:
         self.height = self.width
         self.width = tmp
 
+    def corners(self):
+        '''Returns dict: bottom-left, bottom-right, top-left, top-right].'''
+        corners = {}
+        corners["bottom-left"] = self.position
+        corners["bottom-right"] = Point(self.position.x+self.width,self.position.y)
+        corners["top-left"] = Point(self.position.x,self.position.y+self.height)
+        corners["top-right"] = Point(self.position.x+self.width,self.position.y+self.height)
+        return corners
+
 # breaking up the conditions (also: python has a ternary conditional):
 
     def contains(self, point):
@@ -83,3 +90,8 @@ print(r.contains(Point(-3, -3)))
 
 #diagonal for the same rectangle:
 print(r.diagonal())
+
+#get the corners of the rectangle:
+corners = r.corners()
+for key in corners:
+    print(key, ' : ', corners[key])
