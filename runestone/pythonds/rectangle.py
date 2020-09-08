@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 # doing this as an exercise, even though I'm not sure if there are
 # good reasons for using getters and setters in Python
 

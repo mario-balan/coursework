@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 class Point:
     """Point class for representing and manipulating coordinates osn a plane."""
 

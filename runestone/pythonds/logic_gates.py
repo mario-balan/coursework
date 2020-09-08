@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 class LogicGate:
 
     def __init__(self,n):

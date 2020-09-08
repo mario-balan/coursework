@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import random
 
 def generate_one(strlen,alphabet):
