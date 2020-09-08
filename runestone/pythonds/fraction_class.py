@@ -19,29 +19,43 @@ class Fraction:
         else:
             raise RuntimeError("Both numbers must be integers!")
 
+    def __repr__(self):
+        return "Fraction(%r,%r)" % (self.num,self.den)
 
     def __str__(self):
         return str(self.num)+"/"+str(self.den)
 
-    def __add__(self,otherfraction):
-        newnum = self.num*otherfraction.den + self.den*otherfraction.num
-        newden = self.den * otherfraction.den
+    def __add__(self,other):
+        if not isinstance(other, Fraction):
+            other = Fraction(other, 1)
+        newnum = self.num*other.den + self.den*other.num
+        newden = self.den * other.den
         return Fraction(newnum,newden)
 
-    def __sub__(self,otherfraction):
-        newnum = self.num*otherfraction.den - self.den*otherfraction.num
-        newden = self.den * otherfraction.den
+    def __radd__(self, other):
+        return self.__add__(other)
+
+    def __iadd__(self,other):
+        if not isinstance(other, Fraction):
+            other = Fraction(other, 1)
+        self.num = self.num*other.den + self.den*other.num
+        self.den = self.den * other.den
+        return self
+
+    def __sub__(self,other):
+        newnum = self.num*other.den - self.den*other.num
+        newden = self.den * other.den
         return Fraction(newnum,newden)
 
-    def __mul__(self,otherfraction):
-        newnum = self.num * otherfraction.num
-        newden = self.den * otherfraction.den
+    def __mul__(self,other):
+        newnum = self.num * other.num
+        newden = self.den * other.den
         common = gcd(newnum,newden)
         return Fraction(newnum//common,newden//common)
 
-    def __truediv__(self,otherfraction):
-        newnum = self.num * otherfraction.den
-        newden = self.den * otherfraction.num
+    def __truediv__(self,other):
+        newnum = self.num * other.den
+        newden = self.den * other.num
         common = gcd(newnum,newden)
         return Fraction(newnum//common,newden//common)
 
@@ -75,17 +89,26 @@ class Fraction:
         secondnum = other.num * self.den
         return firstnum >= secondnum
 
-f1 = Fraction(1.1,3)
-#f2 = Fraction(1,2)
-#f3 = Fraction(2,4)
+f1 = Fraction(1,3)
+f2 = Fraction(1,2)
+f3 = Fraction(2,-4)
 print(f1)
+print(f3, f3.num, f3.den)
+#print(f1 + 3)
+#print(3 + f1)
 
 #print(f1,"+",f2,"=",f1+f2)
-#print(f1,"-",f2,"=",f1-f2)
-#print(f1,"*",f2,"=",f1*f2)
-#print(f1,"/",f2,"=",f1/f2)
+print(f1,"-",f2,"=",f1-f2)
+print(f1,"*",f2,"=",f1*f2)
+print(f1,"/",f2,"=",f1/f2)
 
-#print(f1,"equals",f2,"=",f1==f2)
-#print(f1,"not equal",f2,"=",f1!=f2)
-#print(f2,"less or equal than",f3,"=",f2<=f3)
-#print(f2,"greater or equal than",f3,"=",f2>=f3)
+print(f1,"equals",f2,"=",f1==f2)
+print(f1,"not equal",f2,"=",f1!=f2)
+print(f2,"less or equal than",f3,"=",f2<=f3)
+print(f2,"greater or equal than",f3,"=",f2>=f3)
+
+f1+=f2
+print(f1)
+
+print(f3.__repr__())
+print(eval(f3.__repr__()))
