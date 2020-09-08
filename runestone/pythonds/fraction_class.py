@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 def gcd(m,n):
     while m%n != 0:
         oldm = m
@@ -10,8 +12,10 @@ def gcd(m,n):
 class Fraction:
 
     def __init__(self,top,bottom):
-        self.num = top
-        self.den = bottom
+        common = gcd(top,bottom)
+        self.num = top//common
+        self.den = bottom//common
+
 
     def __str__(self):
         return str(self.num)+"/"+str(self.den)
@@ -19,14 +23,12 @@ class Fraction:
     def __add__(self,otherfraction):
         newnum = self.num*otherfraction.den + self.den*otherfraction.num
         newden = self.den * otherfraction.den
-        common = gcd(newnum,newden)
-        return Fraction(newnum//common,newden//common)
+        return Fraction(newnum,newden)
 
     def __sub__(self,otherfraction):
         newnum = self.num*otherfraction.den - self.den*otherfraction.num
         newden = self.den * otherfraction.den
-        common = gcd(newnum,newden)
-        return Fraction(newnum//common,newden//common)
+        return Fraction(newnum,newden)
 
     def __mul__(self,otherfraction):
         newnum = self.num * otherfraction.num
@@ -45,24 +47,42 @@ class Fraction:
         secondnum = other.num * self.den
         return firstnum == secondnum
 
+    def __ne__(self, other):
+        firstnum = self.num * other.den
+        secondnum = other.num * self.den
+        return firstnum != secondnum
+
     def __lt__(self, other):
         firstnum = self.num * other.den
         secondnum = other.num * self.den
         return firstnum < secondnum
+
+    def __le__(self, other):
+        firstnum = self.num * other.den
+        secondnum = other.num * self.den
+        return firstnum <= secondnum
 
     def __gt__(self, other):
         firstnum = self.num * other.den
         secondnum = other.num * self.den
         return firstnum > secondnum
 
+    def __ge__(self, other):
+        firstnum = self.num * other.den
+        secondnum = other.num * self.den
+        return firstnum >= secondnum
+
 f1 = Fraction(2,3)
 f2 = Fraction(1,2)
+f3 = Fraction(2,4)
+print(f3)
 
 print(f1,"+",f2,"=",f1+f2)
 print(f1,"-",f2,"=",f1-f2)
 print(f1,"*",f2,"=",f1*f2)
-#print(f1,"/",f2,"=",f1/f2)
+print(f1,"/",f2,"=",f1/f2)
 
-print(f1==f2)
-print(f1<f2)
-print(f1>f2)
+print(f1,"equals",f2,"=",f1==f2)
+print(f1,"not equal",f2,"=",f1!=f2)
+print(f2,"less or equal than",f3,"=",f2<=f3)
+print(f2,"greater or equal than",f3,"=",f2>=f3)
