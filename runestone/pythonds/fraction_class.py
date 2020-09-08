@@ -12,9 +12,12 @@ def gcd(m,n):
 class Fraction:
 
     def __init__(self,top,bottom):
-        common = gcd(top,bottom)
-        self.num = top//common
-        self.den = bottom//common
+        if (isinstance(top, int) and isinstance(bottom, int)):
+            common = gcd(top,bottom)
+            self.num = top//common
+            self.den = bottom//common
+        else:
+            raise RuntimeError("Both numbers must be integers!")
 
 
     def __str__(self):
@@ -72,17 +75,17 @@ class Fraction:
         secondnum = other.num * self.den
         return firstnum >= secondnum
 
-f1 = Fraction(2,3)
-f2 = Fraction(1,2)
-f3 = Fraction(2,4)
-print(f3)
+f1 = Fraction(1.1,3)
+#f2 = Fraction(1,2)
+#f3 = Fraction(2,4)
+print(f1)
 
-print(f1,"+",f2,"=",f1+f2)
-print(f1,"-",f2,"=",f1-f2)
-print(f1,"*",f2,"=",f1*f2)
-print(f1,"/",f2,"=",f1/f2)
+#print(f1,"+",f2,"=",f1+f2)
+#print(f1,"-",f2,"=",f1-f2)
+#print(f1,"*",f2,"=",f1*f2)
+#print(f1,"/",f2,"=",f1/f2)
 
-print(f1,"equals",f2,"=",f1==f2)
-print(f1,"not equal",f2,"=",f1!=f2)
-print(f2,"less or equal than",f3,"=",f2<=f3)
-print(f2,"greater or equal than",f3,"=",f2>=f3)
+#print(f1,"equals",f2,"=",f1==f2)
+#print(f1,"not equal",f2,"=",f1!=f2)
+#print(f2,"less or equal than",f3,"=",f2<=f3)
+#print(f2,"greater or equal than",f3,"=",f2>=f3)
