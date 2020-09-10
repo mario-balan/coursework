@@ -1,3 +1,5 @@
+# a letter counter (an example of using a dictionary):
+
 alfabeto = 'abcdefghijklmnopqrstuvwxyz'
 
 x = input("Escreva uma frase: ").lower()

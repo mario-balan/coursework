@@ -1,3 +1,5 @@
+# a recursive radix converter:
+
 def toStr(n,base):
    convertString = "0123456789ABCDEF"
    global counter

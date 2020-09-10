@@ -1,3 +1,5 @@
+# a somewhat verbose example of recursion:
+
 def listsum(numList):
    if len(numList) == 1:
         print(numList[0])
