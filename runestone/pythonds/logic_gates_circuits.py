@@ -5,7 +5,7 @@ from logic_gates import *
 class halfAdder(BinaryGate):
     '''A half adder is a combination of a XOR and an AND gate, but here it is implemented
     as a BinaryGate of its own (sum and carry will be passed as a list [sum, carry]).'''
-    
+
     def __init__(self, n):
         super(halfAdder,self).__init__(n)
 
@@ -19,5 +19,29 @@ class halfAdder(BinaryGate):
         else:
             return 1, 1
 
-A = halfAdder('Adder')
-print(A.performGateLogic())
+class fullAdder(halfAdder):
+    def __init__(self, n):
+        super(fullAdder,self).__init__(n)
+        self.pinC = None
+
+    def getPinC(self):
+        if self.pinC == None:
+            return int(input("Enter Pin C input for gate " + self.getLabel()+"-->"))
+        else:
+            return self.pinC.getFrom().getOutput()
+
+    def performGateLogic(self):
+        a = self.getPinA()
+        b = self.getPinB()
+        c = self.getPinC()
+
+        sum = 1 if ((a != b) != c) else 0
+        carry = 1 if ((a and b) or (a and c) or (b and c)) else 0
+
+        return carry, sum
+
+H = halfAdder('Half')
+#print(H.performGateLogic())
+
+F = fullAdder('Full')
+print(F.performGateLogic())
