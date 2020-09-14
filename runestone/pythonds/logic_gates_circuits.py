@@ -4,7 +4,7 @@ from logic_gates import *
 
 class halfAdder(BinaryGate):
     '''A half adder is a combination of a XOR and an AND gate, but here it is implemented
-    as a BinaryGate of its own (sum and carry will be passed as a list [sum, carry]).'''
+    as a BinaryGate of its own (sum and carry will be passed as a list [carry, sum]).'''
 
     def __init__(self, n):
         super(halfAdder,self).__init__(n)
@@ -13,7 +13,7 @@ class halfAdder(BinaryGate):
         a = self.getPinA()
         b = self.getPinB()
         if (a != b):
-            return 1, 0
+            return 0, 1
         elif (a == 0 and b == 0):
             return 0, 0
         else:
