@@ -1,5 +1,5 @@
 ;this is the sqrt example lexically scoped
-;the indentation defines a block strucuture;
+;the nesting defines a block strucuture;
 ;x is a free variable inside this scope;
 
 
