@@ -13,11 +13,11 @@
     (+ (pascal (- row 1) (- col 1)) (pascal (- row 1) col))))
 
 ; an example of expansion (computing (pascal (4, 2)):
-;(pascal 4 2)
-;(+ (pascal 3 1) (pascal 3 2))
-;(+ (+ (pascal 2 0) (pascal 2 1)) (+ (pascal 2 1) (pascal 2 2)))
-;(+ (+ (pascal 2 0) (+ (pascal 1 0) (pascal 1 1))) (+ (+ (pascal 1 0) (pascal 1 1)) (pascal 2 2)))
-;(+ (+ 1 (+ 1 1)) (+ (+ 1 1) 1))
+; (pascal 4 2)
+; (+ (pascal 3 1) (pascal 3 2))
+; (+ (+ (pascal 2 0) (pascal 2 1)) (+ (pascal 2 1) (pascal 2 2)))
+; (+ (+ (pascal 2 0) (+ (pascal 1 0) (pascal 1 1))) (+ (+ (pascal 1 0) (pascal 1 1)) (pascal 2 2)))
+; (+ (+ 1 (+ 1 1)) (+ (+ 1 1) 1))
 
 ; printing the first 6 rows:
 (printf "~a\n" (pascal 0 0))

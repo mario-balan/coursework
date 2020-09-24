@@ -1,6 +1,6 @@
-;this is the sqrt example lexically scoped
-;the nesting defines a block strucuture;
-;x is a free variable inside this scope;
+; this is the sqrt example lexically scoped
+; the nesting defines a block strucuture;
+; x is a free variable inside this scope;
 
 
 (define (sqrt x)
