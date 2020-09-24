@@ -1,7 +1,0 @@
-as remarked by Mark Miller on QUORA:
-
-"I'd go with Racket. I used this implementation with SICP, and it worked out pretty well. It allows you to pick different versions of the language, as they're each implemented a bit differently. The default will likely work for the first couple chapters. Once you get to chapter 3, I found I needed to switch to "lazy Scheme," which does lazy evaluation. The chapter tries to present some code which you would think would implement lazy evaluation by itself, but I found that Racket, in its default setting, didn't "go for it." So I switched to "lazy Scheme," which made it work, but made some of the code presented in the chapter superfluous, as lazy Scheme already does some of what the code in the chapter was trying to accomplish. In any case, it's alright to go ahead and use the code in the chapter before you get to the exercises. It won't hurt anything."
-
-...
-
-even though mit-scheme's interface has its charm, DrRacket proved itself a lot more functional.
