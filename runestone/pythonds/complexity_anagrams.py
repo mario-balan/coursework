@@ -75,9 +75,11 @@ def anagramCountCompare(w1,w2):
     return stillPossible
 
 
-#word1 = "modivi"
-word1 = "".join(random.choice(string.ascii_lowercase) for _ in range(10000))
+strLength = 10000
+
+word1 = "".join(random.choice(string.ascii_lowercase) for _ in range(strLength))
 word2 = "".join(random.sample(word1, len(word1)))
+word3 = "".join(random.choice(string.ascii_lowercase) for _ in range(strLength))
 print("First String =", word1)
 print("Second String =", word2)
 
@@ -85,10 +87,18 @@ print("Second String =", word2)
 #print(anagramSortCompare(word1,word2))
 #print(anagramCountCompare(word1,word2))
 
-
+print("For two strings of size", strLength, "that ARE anagrams:")
 t1 = Timer("anagramCheckOff('%s', '%s')" %(word1, word2), "from __main__ import anagramCheckOff")
 print("Checking Off: ",t1.timeit(number=1), "milliseconds in 𝑂(𝑛2).")
 t2 = Timer("anagramSortCompare('%s', '%s')" %(word1, word2), "from __main__ import anagramSortCompare")
 print("Sort and Compare: ",t2.timeit(number=10), "milliseconds in 𝑂(𝑛log𝑛).")
 t3 = Timer("anagramCountCompare('%s', '%s')" %(word1, word2), "from __main__ import anagramCountCompare")
+print("Count and Compare: ",t3.timeit(number=10), "milliseconds in 𝑂(𝑛).")
+
+print("For two strings of size", strLength, "that ARE NOT anagrams:")
+t1 = Timer("anagramCheckOff('%s', '%s')" %(word1, word3), "from __main__ import anagramCheckOff")
+print("Checking Off: ",t1.timeit(number=1), "milliseconds in 𝑂(𝑛2).")
+t2 = Timer("anagramSortCompare('%s', '%s')" %(word1, word3), "from __main__ import anagramSortCompare")
+print("Sort and Compare: ",t2.timeit(number=10), "milliseconds in 𝑂(𝑛log𝑛).")
+t3 = Timer("anagramCountCompare('%s', '%s')" %(word1, word3), "from __main__ import anagramCountCompare")
 print("Count and Compare: ",t3.timeit(number=10), "milliseconds in 𝑂(𝑛).")
