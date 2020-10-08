@@ -3,6 +3,11 @@
 from data_structures import Stack
 import sys
 
+def matches(open, close):
+    openers = "([{"
+    closers = ")]}"
+    return openers.index(open) == closers.index(close)
+
 def parChecker(string):
     s = Stack()
     i = 0
@@ -10,13 +15,14 @@ def parChecker(string):
 
     while i < len(string) and balanced:
         symbol = string[i]
-        if symbol == "(":
+        if symbol in "([{":
             s.push(symbol)
-        else:
-            if s.isEmpty():
-                balanced = False
-            elif symbol == ")":
-                    s.pop()
+        elif s.isEmpty():
+            balanced = False
+        elif symbol in ")]}":
+            top = s.pop()
+            if not matches(top,symbol):
+               balanced = False
         i += 1
 
     if balanced and s.isEmpty():
@@ -27,4 +33,4 @@ def parChecker(string):
 try:
     print(parChecker(sys.argv[1])) # input a string:
 except:
-    print("You must pass a string with some parentheses as the argument.")
+    print("You must pass a string with some parentheses, brackets and curly bracers as the argument.")
