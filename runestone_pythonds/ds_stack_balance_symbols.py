@@ -33,4 +33,4 @@ def parChecker(string):
 try:
     print(parChecker(sys.argv[1])) # input a string:
 except:
-    print("You must pass a string with some parentheses, brackets and curly bracers as the argument.")
+    print("You must pass a string with some parentheses, brackets and curly braces as the argument.")
