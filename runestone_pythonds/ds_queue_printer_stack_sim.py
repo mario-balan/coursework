@@ -41,25 +41,26 @@ class Task:
         return currenttime - self.timestamp
 
 
-def newPrintTask():
-    num = random.randrange(1, 181)
-    if num == 180:
+def newPrintTask(students):
+    chance = 3600 / (students * 2)
+    num = random.randrange(1, chance + 1)
+    if num == chance:
         return True
     else:
         return False
 
-def simulation(numSeconds, pagesPerMinute):
+def simulation(numSeconds, numStudents, pagesPerMinute):
 
     labprinter = Printer(pagesPerMinute)
     printQueue = Queue()
     waitingtimes = []
 
     for currentSecond in range(numSeconds):
-        if newPrintTask():
+        if newPrintTask(numStudents):
             task = Task(currentSecond)
             printQueue.enqueue(task)
 
-        if not labprinter.busy() and not printQueue.isEmpty():
+        if (not labprinter.busy()) and (not printQueue.isEmpty()):
             nexttask = printQueue.dequeue()
             waitingtimes.append(nexttask.waitTime(currentSecond))
             labprinter.startNext(nexttask)
@@ -68,7 +69,14 @@ def simulation(numSeconds, pagesPerMinute):
 
     averageWait = sum (waitingtimes) / len(waitingtimes)
     print("Average Wait %6.2f secs %3d tasks remaining."%(averageWait,printQueue.size()))
+    return averageWait
 
+allAverages = []
 
-for i in range(20):
-    simulation(3600,5)
+for i in range(10):
+    allAverages.append(simulation(3600,20,10))
+
+allAverages.sort()
+print("\nSmallest Average Wait: %6.2f secs."%(allAverages[0]))
+print("Largest Average Wait: %6.2f secs."%(allAverages[-1]))
+print("Average Average Wait Time: %6.2f secs."%(sum(allAverages) / len(allAverages)))
