@@ -66,7 +66,7 @@ class Deque:
     def size(self):
         return len(self.items)
 
-class Node: # a helper class for Linked List implementation
+class Node: # a helper class for List implementation
     def __init__(self,initdata):
         self.data = initdata
         self.next = None
