@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 class Point:
-    """Point class for representing and manipulating coordinates osn a plane."""
+    """Point class for representing and manipulating coordinates on a plane."""
 
     def __init__(self, initX, initY):
         self.x = initX
@@ -29,6 +29,7 @@ class Rectangle:
         return corners
 
     def doCollide(self, other):
+        '''Checks if one given rectangle overlaps with another.'''
         selfCorners = self.corners();
         otherCorners = other.corners();
 
@@ -44,7 +45,7 @@ class Rectangle:
 
         return True
 
-# for testing 'collision()':
+# for testing 'doCollide()':
 r1 = Rectangle(Point(0, 0), 5, 10)
 
 r2 = Rectangle(Point(5, 5), 5, 5)
